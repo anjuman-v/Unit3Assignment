@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Investers</title>
+        <style>
+            #container{
+               display:grid;
+               margin:auto;
+               grid-template-columns: repeat(4,1fr);
+               margin-top:50px;
+               grid-gap:60px;
+              
+            }
+            #container > div{
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 10px;
+               
+            }
+            img{
+                width:100%;
+            
+                border-radius: 10px;
+            }
+            h3{
+                
+                text-align:center;
+            }
+            p{
+                line-height: 0px;
+                text-align:center;
+                color:rgb(173, 167, 167);
+            }
+            @media only screen and (min-width:0px) and (max-width:375px)
+            {
+                #container{
+               display:grid;
+               width:100%;
+               grid-template-rows: 200px 200px 200px 200px;
+               grid-template-columns: repeat(1,1fr);
+               grid-template-areas: 
+               "a"
+               "b"
+               "c"
+               "d" 
+               ;
+              
+            }
+            }
+            @media only screen and (min-width:376px) and (max-width:768px)
+            {
+                #container{
+               display:grid;
+               
+               grid-template-rows: 200px 200px ;
+               grid-template-columns: repeat(2,1fr);
+               grid-template-areas: 
+               "a b"
+               "c d"
+               ;
+            }
+            }
+            #first{
+                grid-area: a;
+            }
+            #second{
+                grid-area: b;
+            }
+            #third{
+                grid-area: c;
+            }
+            
+            #fourth{
+                grid-area: d;
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+ </body>
+
+</html>
+
+
+<script>
+
+
+var data = [
+
+ {
+
+ 
+
+   name: "Ankush Sachdeva",
+
+   image: "https://d27028dliefpk3.cloudfront.net/assets/our-investors/ankush-sachdeva-sharechat.jpg",
+
+ role: "Co-founder and CEO, ShareChat"
+
+ },
+
+ {
+
+ 
+
+ name: "Bhanu Pratap Singh",
+
+ image: "https://d27028dliefpk3.cloudfront.net/assets/our-investors/bhanu-pratap-singh-sharechat.jpg",
+
+ role: "Co-founder and CTO, ShareChat"
+
+ },
+
+ {
+
+ 
+
+ name: "Farid Ahsan",
+
+ image: "https://d27028dliefpk3.cloudfront.net/assets/our-investors/farid-ahsan-sharechat.png",
+
+role: "Co-founder and COO, ShareChat"
+
+},
+
+ {
+
+
+
+ name: "Amit Kumar Agarwal",
+
+ image: "https://d27028dliefpk3.cloudfront.net/assets/our-investors/amit-kumar-agarwal-nobroker.jpg",
+
+ role: "Founder and CEO, NoBroker"
+
+ }
+
+
+
+]
+
+ console.log(data)
+
+ var body=document.querySelector("body")
+
+ var maindiv=document.createElement("div")
+
+maindiv.setAttribute("id","container")
+
+ body.append(maindiv)
+
+ showname()
+
+ function showname(){
+
+   data.map(function(items){
+
+     var div=document.createElement("div")
+
+     div.setAttribute("id","divs")
+
+     var images=document.createElement("img")
+
+     images.setAttribute("src",items.image)
+
+     images.setAttribute("id","ima")
+
+     var h2=document.createElement("h2")
+
+     h2.textContent=items.name
+
+     h2.setAttribute("class","h2")
+
+     var p=document.createElement("p")
+
+ p.textContent=items.role
+
+p.setAttribute("id","p")
+
+div.append(images,h2,p)
+
+maindiv.append(div)
+
+})
+
+ }
+
+
+
+</script>

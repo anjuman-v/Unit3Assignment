@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Karlo Tickets</title>
+        <style>
+            #container{
+                display:flex;
+                
+               margin:auto;
+               background-color: white;
+
+            }
+            #container > div:nth-child(1){
+                display:flex;
+               margin-left:90px;
+                width:400px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 10px;;
+                height:500px;
+                margin-bottom:10px;
+                background-color: gray;
+                justify-content: center;
+                font-size: 15px;
+            }
+            #container > div:nth-child(2){
+                width:500px;
+                font-size: 15px;
+                margin-bottom:10px;
+            }
+             .head{
+                 display:flex;
+                 justify-content:space-evenly ;
+                 background-color: white;
+                 font-family: Arial, Helvetica, sans-serif;
+             }
+   
+           #cat{
+               width:300px;
+               height:30px;
+           }
+           #desc{
+            width:292px;
+           }
+           #date{
+            width:292px;
+           }
+           #number{
+            width:292px;
+           }
+           #form{
+               margin-top:30px;
+           }
+           .sub{
+               background-color: white;
+               height:50px;
+               width:100px;
+               border-radius: 5px;
+           }
+           table{
+               margin-left: 50px;
+               width:100%;
+               border:1px solid black;
+           }
+           table,tr,th{
+               margin-left: 50px;
+              
+               border:1px solid black;
+           }
+           table,tr,td{
+               margin-left: 50px;
+              
+               border:1px solid black;
+           }
+        </style>
+
+        
+    </head>
+    <body>
+        <div class = "head">
+            <h1>Raise Ticket</h1>
+            <h1>Table Summay</h1>
+        </div>
+        
+        <div id="container">
+         <div class = "main">
+              <form id= "form">
+                    <label>Ticket Category</label>
+                    <br><br>
+                    <select id = "cat">
+                        <option >----</option>
+                        <option value="refund">Refund</option>
+                        <option value="Item miss">Item missing</option>
+                        <option value="Oreder status">Order Status</option>
+                        <option value="delivery">Delivery</option>
+                        <option value="feedback">Feedback</option>
+                     </select>
+                     <br><br>
+                 <label>Ticket body</label>
+                 <br><br>
+                 <textarea name = "" id = "desc" cols = "30" rows ="5" placeholder = "Enter Description"></textarea>
+                 <br><br>
+                 <label>Date</label>
+                 <br><br>
+                <input type = "date" id ="date"/>
+                <br><br>
+                <label>Ticket number</label>
+                <br><br>
+                <input type = "number" id = "number"/>
+                <br/><br/>
+                <input type = "submit" value = "Raise Ticket" class = "sub"/>
+                </form>
+            </div>
+            <div id = "display">
+               
+                <table class = "tabalehead">
+                    <thead>
+                        <tr>
+                            <th>Ticket Number</th>
+                            <th>Ticket Cotegory</th>
+                            <th>Date</th>
+                            <th>Ticket Body</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+ document.querySelector("#form").addEventListener("submit", formSubmit)
+
+ var korloarr = JSON.parse(localStorage.getItem("korlo")) || []
+ displayTable(korloarr)
+ function formSubmit(event){
+     event.preventDefault();
+
+     var korlodata = {
+     category : form.cat.value,
+      desc: form.desc.value,
+     date : form.date.value,
+     number : form.number.value,
+    
+ }
+ korloarr.push(korlodata);
+ displayTable(korloarr)
+ localStorage.setItem("korlo",JSON.stringify(korloarr))
+ 
+}
+function displayTable(korloarr){
+    var tbody = document.querySelector("tbody")
+    tbody.textContent = ""
+korloarr.map(function (elem,index){
+        var tr = document.createElement("tr");
+        var tdNum = document.createElement("td");
+        var td1 = document.createElement("td")
+        var td2 = document.createElement("td")
+        var td3 = document.createElement("td")
+        var td4 = document.createElement("button")
+         td4.addEventListener("click", function(){
+            deleteRow(index)
+        })
+
+        tdNum.textContent = elem.number;
+        td1.textContent = elem.category;
+        td2.textContent = elem.date;
+        td3.textContent = elem.desc;
+        td4.textContent = "Remove"
+        tr.append(tdNum,td1,td2,td3,td4)
+        tbody.append(tr)
+ 
+    })
+    function deleteRow(index){
+        korloarr.splice(index,1)
+        localStorage.setItem("korlo" ,JSON.stringify(korloarr))
+        displayTable(korloarr)
+    }
+}
+
+</script>
