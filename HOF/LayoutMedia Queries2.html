@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout_1.html</title>
+    <style>
+        #container{
+            margin: auto;
+
+            display:grid ;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 100px 200px; 
+            grid-gap: 30px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "b1 b1 b1 b2 b2 b2 b3 b3 b3 b4 b4 b4";
+        }
+        .nav{
+            grid-area: n;
+            background-color:yellow ;
+            
+            font-size: 32px;
+            padding: 2% ;
+
+        }
+        .box1{
+            grid-area: b1;
+            background-color:red ;
+            font-size: 32px;
+            padding: 2% ;
+        }
+        .box2{
+            grid-area: b2;
+            background-color:blue ;
+            font-size: 32px;
+            padding: 2% ;
+        }
+        
+        .box3{
+            grid-area: b3;
+            background-color:green ;
+            font-size: 32px;
+            padding: 2% ;
+        }
+        .box4{
+            grid-area: b4;
+            background-color:gray ;
+            font-size: 32px;
+            padding: 2% ;
+            
+        }
+        @media only screen and (min-width: 0px) and (max-width: 320px){
+           #container{
+            grid-template-rows: 50px 100px 100px 100px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1"
+            "b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2"
+            "b3 b3 b3 b3 b3 b3 b3 b3 b3 b3 b3 b3"
+            "b4 b4 b4 b4 b4 b4 b4 b4 b4 b4 b4 b4"
+           }
+        }
+        @media only screen and (min-width: 321px) and (max-width: 720px){
+         #container{
+            grid-template-rows: 100px 200px 300px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "b1 b1 b1 b1 b1 1b b3 b3 b3 b3 b3 b3"
+            "b2 b2 b2 b2 b2 b2 b4 b4 b4 b4 b4 b4";
+           }
+        }
+    </style>
+</head>
+<body>
+   <div id="container">
+       <div class="nav">Navigator</div>
+       <div class="box1">box1</div>
+       <div class="box2">box2</div>
+       <div class="box3">box3</div>
+       <div class="box4">box4</div>
+   </div> 
+</body>
+</html>

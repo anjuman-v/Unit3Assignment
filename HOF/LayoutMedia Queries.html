@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout_1.html</title>
+    <style>
+        #container{
+            margin: auto;
+
+            display:grid ;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 100px 150px 150px 150px; 
+            grid-gap: 20px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "b1 b1 b1 b1 b1 b1 b1 b1 b2 b2 b2 b2"
+            "b1 b1 b1 b1 b1 b1 b1 b1 b3 b3 b3 b3"
+            "b1 b1 b1 b1 b1 b1 b1 b1 b4 b4 b4 b4";
+
+
+
+        }
+        .nav{
+            grid-area: n;
+            background-color:yellow ;
+            font-size: 31px;
+             padding: 2% ;
+
+        }
+        .box1{
+            grid-area: b1;
+            background-color:red ;
+            font-size: 32px;
+            padding: 2% ;
+        }
+        .box2{
+            grid-area: b2;
+            background-color:#7fff00;
+            font-size: 32px;
+            padding: 2% ;
+        }
+        
+        .box3{
+            grid-area: b3;
+            background-color:#7fff00;
+            font-size: 32px;
+            padding: 2% ;
+        }
+        .box4{
+            grid-area: b4;
+            background-color:#7fff00;
+            font-size: 32px;
+            padding: 2% ;
+            
+        }
+        @media only screen and (min-width: 0px) and (max-width: 320px){
+           #container{
+            grid-template-rows: 50px 400px 100px 100px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1"
+            "b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2"
+            "b3 b3 b3 b3 b3 b3 b3 b3 b3 b3 b3 b3"
+            "b4 b4 b4 b4 b4 b4 b4 b4 b4 b4 b4 b4"
+           }
+        }
+        @media only screen and (min-width: 321px) and (max-width: 720px){
+         #container{
+            grid-template-rows: 50px 100px 200px 300px;
+            grid-template-areas: 
+            "n n n n n n n n n n n n"
+            "b1 b1 b1 b1 b1 1b b1 b1 b1 b1 b1 b1"
+            "b2 b2 b2 b2 b3 b3 b3 b3 b4 b4 b4 b4";
+           }
+        }
+    </style>
+</head>
+<body>
+   <div id="container">
+       <div class="nav">Navigator</div>
+       <div class="box1">LeftBox1</div>
+       <div class="box2">RightBox1</div>
+       <div class="box3">RightBox2</div>
+       <div class="box4">RightBox3</div>
+   </div> 
+</body>
+</html>
