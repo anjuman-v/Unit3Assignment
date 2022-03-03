@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adding New Values in Array</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+    function arr(){        // making a function to create a array
+        this.length = arguments.length; 
+        Object.defineProperty(this, "length",{
+            writable : true,
+            enumerable:false,
+        });
+        for(let i=0; i<this.length; i++)
+        {
+            this[i] = arguments[i];
+           
+        }
+    }
+
+    arr.prototype.push = function (elem){    // making a function to pushing the array
+        this[this.length] = elem;
+        this.length++;
+        
+    };
+
+    function reverse(myArray){          //making a function to reverse array
+        var myArray1 = [];
+        for(let i=myArray.length-1; i>=0; i--)
+        {
+            myArray1.push(myArray[i])
+        }
+         return myArray1;
+        
+    }
+
+    arr.prototype.pop = function (){
+        delete this[this.length-1]
+        this.length--;
+    }
+    arr.prototype.shift = function (){
+        delete this[0]
+    }
+
+    let myArray = new arr(1,2,3,4,5);
+   
+
+    
+    myArray.push(6)
+    myArray.push(7)
+    console.log(myArray)  // print pushed array
+    let res = reverse(myArray) //calling reverse Array
+    myArray.pop()
+    myArray.shift()
+
+    console.log(res) 
+    console.log(res[0]) //printing Reverse array
+
+</script>

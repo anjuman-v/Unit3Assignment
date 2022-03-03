@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    console.log("Object using Object.create");
+
+    let grandParent = {
+        name: "grandpa",
+        age : 99,
+    }
+     var parent = Object.create(grandParent)
+
+     parent.name = "father"
+     parent.age = 52
+
+     var child = Object.create(parent)
+
+     child.name = "Anjuman";
+     child.age = 22,
+     console.log(child)
+
+
+    //  using inheritance
+
+//     console.log("cunstructor function")
+
+//     function grandParent(n,a){
+//         this.name = n;
+//         this.age = a;
+//     }
+// grandParent.prototype.parent = function(f_n, f_a){
+//     this.f_name = f_n;
+//     this.f_age = f_a;
+// }
+
+// var child = new grandParent("grandpa",99)
+// child.parent("father",52);
+
+// console.log(child)
+
+</script>

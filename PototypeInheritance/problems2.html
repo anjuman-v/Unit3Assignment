@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Array</title>
+    </head>
+    <body>
+
+    </body>
+</html>
+<script>
+
+    var obj = {}
+    function arr(){
+    
+        this.length = arguments.length;
+        for(let i=0; i<this.length; i++)
+        {
+            this[i] = arguments[i];
+            obj[i] = arguments[i];
+            
+        }
+      
+    }
+    let MyArr = new arr(1,2,3,4,5);
+    console.log(obj)
+
+</script>
