@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login-page.css">
+  
+  <style>
+   
+   #minbox{
+        display:flex;
+        justify-content:space-evenly;
+    }
+   #cont{
+     width:370px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+        height:248px;
+         margin-top:40px ; 
+         margin-left: 30%;
+         
+   }
+
+   label, input{
+    margin:16px;
+    width:300px;
+    height:30px;
+ }
+ button{
+     margin:19px;
+     border:none;
+     height:40px;
+     width:300px;
+     background-color: teal;
+ }
+
+button:hover{
+   background-color :teal;
+   color:white;
+   cursor: pointer;
+}
+#emails{
+  margin-top: 50px;
+}
+
+  </style>
+</head>
+
+<body>
+  <div id="cont">
+    <label id="emails">Email address</label><br>
+       <input type="text" id="email" ><br>
+       <label> Password </label><br>
+       <input type="password" id="passwd" >
+       <button id="btn">LOGIN</button>
+   </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  
+ document.querySelector("#btn").addEventListener("click",login)
+var regduserdata=JSON.parse(localStorage.getItem("regddata"))||[];
+// console.log(regduserdata);
+
+function login(){
+   
+    var email=document.querySelector("#email").value
+    var pass=document.querySelector("#passwd").value
+    if(email=="admin" && pass=="admin"){
+         window.location.href="Admin.html"
+    }
+     else{
+         isuser=false
+        for(var i=0;i<regduserdata.length;i++){
+           if(regduserdata[i].emailid==email && regduserdata[i].password==pass){
+
+              console.log(regduserdata[i]);
+              isuser=true
+              break;
+           }
+     }
+        if(isuser==true){
+            alert("login successfull")
+            window.location.href="index.html"
+        }
+        else{
+            alert("invalid");
+        }
+     }
+}
+
+
+</script>

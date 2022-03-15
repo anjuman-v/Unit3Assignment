@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney+ Hotstar - Watch </title>
+    <link rel="shortcut icon" type="image/jpg"
+        href="https://lh3.googleusercontent.com/proxy/ZhyvBnCo8MrqSylB5QQjTMab9dXy0zn2AetRcuvmNs5WDNrghUqEEl1ZKNPS3CEK6NetnKVbWesBf6VlzyIos9gRjea1IhtE8wg6RRHfMOLvAAWvPuBKhQ" />
+    <style>
+        body {
+            font-family: 'Rubik', sans-serif;
+            /* background-color: #00AA8A; */
+            text-align: center;
+            padding-top: 5px;
+            overflow: scroll;
+        }
+
+        
+        #headBox{
+            width: 100%;
+            border: 1px solid rgb(8, 250, 250);
+        }
+
+        #header{
+            
+            height: 50px;
+            margin: 0 0 0 2%;
+            border-radius: 5px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            box-sizing: border-box;
+            color: black;
+            
+        }
+        #header>div{
+            padding: 7% 0 0 0;
+        }
+
+        #homePage:hover, #signUp:hover, #login:hover{
+           color: rgb(10, 45, 245);
+           cursor: pointer;
+        }
+        .img{
+            width: 40%;
+            height: 80%;
+            cursor: pointer;
+        }
+        .imgBox{
+            width: 100%;
+            
+        }
+        
+           
+
+        #secondBox{
+            overflow: scroll;
+            height: 620.5px;
+        }
+        #mySlideShow{
+            /* margin:  0 0 0; */
+            height: 400px;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+            }
+
+        #allMovies{
+            width: 80%;
+            height: 1200px;
+            margin: 1% auto auto auto;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            
+        }
+
+         
+
+        #name{
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
+
+        .colour{
+            
+            color: white;
+            box-sizing: border-box;
+            margin: 7% 0 0 0;
+            width: 50%;
+            height: 50%;
+            border-radius: 10px;
+        }
+        img,button{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="firstBox">
+    <div id="headBox">
+        
+        
+            <div id="header">
+                <div id="homePage">Home</div>
+                <div id="signUp">Signup</div>
+                <div id="login">Login</div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div id="secondBox" >
+    <div id="mySlideShow">
+
+    </div>
+    
+    <div id="allMovies">
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
+<script>
+    
+
+
+
+  let homePage = document.getElementById("homePage");
+
+    function home() {
+        window.location.href = "movieHomePage.html";
+    }
+
+    homePage.addEventListener("click", home);
+
+
+    let signUp1 = document.getElementById("signUp");
+
+    function signUp() {
+        window.location.href = "signup.html";
+    }
+
+    signUp1.addEventListener("click", signUp);
+
+
+
+    let login = document.getElementById("login");
+
+    function signin() {
+        window.location.href = "login.html";
+    }
+
+    login.addEventListener("click", signin);
+
+
+
+    // making SlideShow->
+
+    var images = ["https://live.staticflickr.com/4191/34054101300_067a8df1af_b.jpg",
+                   "https://www.imago-images.com/bild/st/0097823035/w.jpg",
+                    "https://webneel.net/file/images/11-16/8-xmen-movie-poster-design.jpg",
+                    "http://themoviemensch.com/wp-content/uploads/2018/04/avengers-logo.jpg"
+                ];
+
+
+    let cont = document.getElementById("mySlideShow")
+
+
+    function startSlideShow(){
+
+
+        //1.
+
+        
+        let counter = 0;
+
+         let img = document.createElement("img");
+        img.src = images[counter];
+        img.style.width = "100%";
+        img.style.height = "100%"
+        cont.appendChild(img);
+        counter++;
+        setInterval(function(){
+
+            cont.textContent="";
+            if( counter === images.length){
+                counter=0;
+            }
+
+            let img = document.createElement("img");
+            img.src = images[counter];
+            img.style.width = "100%";
+            img.style.height = "100%"
+            cont.appendChild(img);
+            counter++;
+            
+        },5000)
+
+        
+
+
+    }
+
+    startSlideShow()
+
+
+    // creating dataBase of movies->
+
+    var moviesData = [
+
+        {
+            name:"Free Guy",
+            releaseDate:"Aug 13",
+            imbdRating:7.3,
+            img:"https://m.media-amazon.com/images/M/MV5BOTY2NzFjODctOWUzMC00MGZhLTlhNjMtM2Y2ODBiNGY1ZWRiXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_QL75_UY281_CR3,0,190,281_.jpg"
+
+
+        },
+
+        {
+            name: "Black Widow",
+             releaseDate: "July 9",
+            imbdRating: 6.9,
+            img: "https://terrigen-cdn-dev.marvel.com/content/prod/1x/042_bluebayou_digital_keyart_teaser_r16_lg.jpg"
+
+
+        },
+
+        {
+           name: "Sardar Udham",
+            releaseDate: "Oct 16",
+            imbdRating: 9.2,
+            img: "https://upload.wikimedia.org/wikipedia/en/5/5b/Sardar_Udham_poster.jpg"
+        
+
+        },
+
+        {
+            name: "Bell Bottom",
+            releaseDate: "Aug 19",
+            imbdRating: 7.8,
+            img: "https://upload.wikimedia.org/wikipedia/en/2/21/Bell_Bottom_film_Poster.jpg"
+            
+
+        },
+
+        {
+            name: "Shershaah",
+            releaseDate: "Aug 12",
+            imbdRating: 8.7,
+            img: "https://upload.wikimedia.org/wikipedia/en/9/91/Shershaah_film_poster.jpg"
+            
+
+        },
+
+        {
+            name: "Bhuj",
+            releaseDate: "Aug 13",
+            imbdRating: 7.9,
+            img: "https://upload.wikimedia.org/wikipedia/en/4/42/Bhuj-_The_Pride_of_India_film_poster.jpg"
+            
+
+        },
+
+        {
+           name: "Zombie Reddy",
+            releaseDate: "Feb 5",
+            imbdRating: 6.8,
+            img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Zombie_Reddy.jpg"
+        
+
+        },
+
+        {
+            name: "Sarrainodu",
+             releaseDate: "Apr 22",
+            imbdRating: 8.9,
+            img: "https://upload.wikimedia.org/wikipedia/en/d/d6/Sarrainodu_poster.jpg"
+
+
+        },
+
+        {
+            name: "Yevadu",
+             releaseDate: "Jan 12",
+            imbdRating: 7.4,
+            img: "https://upload.wikimedia.org/wikipedia/en/e/e7/Yevadu_poster.jpg"
+
+
+        }
+
+    ]
+
+
+    //pushing movies data in localstorage->
+        
+
+    
+    localStorage.setItem("database",JSON.stringify(moviesData));
+    
+    
+    function showMovies(){
+
+        moviesData.forEach(function(movie){
+
+
+            let moviesBox = document.getElementById("allMovies")
+            
+                let movieName = movie.name;
+                
+
+                let releaseDate = movie.releaseDate;
+
+                let posterImg = movie.img;
+
+                let imdbRating = movie.imbdRating;
+
+                // console.log(movieName, releaseDate, posterImg, imdbRating)
+
+
+            let Div = document.createElement("div");
+                let imgBox = document.createElement("div");
+                imgBox.style.width= "50%"
+                imgBox.style.height= "70%"
+                imgBox.style.margin= "0 0 0 25%"
+                    let img = document.createElement("img");
+                    img.style.width = "100%"
+                    img.style.height = "95%"
+                    img.src = posterImg;
+                    img.style.borderRadius = "5px";
+                    img.addEventListener("mouseenter" , () =>{
+                        img.style.width = "101%";
+                        img.style.height = "96%";
+                    });
+                    img.addEventListener("mouseleave", () => {
+                img.style.width = "100%";
+                img.style.height = "95%";
+            });
+
+                    
+                    imgBox.appendChild(img);
+                
+                let movieName1 = document.createElement("div");
+                movieName1.textContent = movieName;
+                movieName1.style.fontWeight = "700"
+                movieName1.style.marginTop = "5px"
+
+                let relDate = document.createElement("div");
+                relDate.textContent =  releaseDate;
+                relDate.style.fontWeight = "700"
+                relDate.style.marginTop = "5px"
+
+                let imdb = document.createElement("div");
+                imdb.textContent = "IMDb Rating  "+imdbRating;
+                imdb.style.fontWeight = "700"
+                imdb.style.marginTop = "5px"
+                
+
+
+
+
+                Div.append(imgBox,movieName1, relDate, imdb);
+            allMovies.appendChild(Div);
+        })
+    }
+
+    showMovies();
+
+
+   
+
+        
+         
+    
+</script>
