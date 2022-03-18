@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+outlined"> -->
+</head>
+
+<style>
+    #cont{
+        display: grid;
+        grid-template-columns: auto auto;
+        height: 700px;
+        margin: 20px 0 0 0;
+    }
+    div{
+        /* border: 1px solid black; */
+    }
+</style>
+
+<body>
+
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="getWeather()" >Get Weather</button>
+    <a href="seven days forecast.html"><button>get 8 days forecast</button></a>
+    <div id="cont">
+        <div id="data"></div>
+        <div id="map"></div>
+    </div>
+    
+</body>
+
+</html>
+<script>
+
+    //async await
+    //fetch
+    //api
+
+    //43217800e9b2304cb46eb8ce5181fa4c
+
+    async function getWeather() {
+       
+        let city = document.getElementById("city").value;
+
+        let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=43217800e9b2304cb46eb8ce5181fa4c`)
+        let data = await res.json();
+        console.log(data);
+        dataapp(data);
+
+        if(localStorage.getItem("cityName")=== null){
+            localStorage.setItem("cityName", JSON.stringify([]));
+        }
+
+        let arr = JSON.parse(localStorage.getItem("cityName"));
+        
+        arr.push(city);
+
+        localStorage.setItem("cityName",JSON.stringify(arr));
+
+    }
+
+    let Div = document.getElementById("data");
+
+    function dataapp(el) {
+        search();
+        console.log(el);
+        Div.textContent = "";
+        let pName = document.createElement("h4");
+        pName.textContent = "Your City: "+ el.name;
+
+        let Temp = document.createElement("h5");
+        Temp.textContent = "Temperature: " + Math.round(el.main.temp - 273) + "°C";
+        
+        let wind = document.createElement("h5");
+        wind.textContent = "Wind Speed: " + el.wind.speed + "  miles/hour";
+
+        let cDiv = document.createElement("Div");
+        cDiv.style.display = "grid";
+        cDiv.style.gridTemplateColumns = "30% 70%";
+
+            let cloud = document.createElement("h5");
+            cloud.textContent = "Weather Condition: " + el.weather[0].main;
+
+            let icon = el.weather[0].icon;
+
+            let iconImg = document.createElement("img");
+            iconImg.src = `http://openweathermap.org/img/w/${icon}.png`
+
+
+        cDiv.append(cloud,iconImg);
+        
+
+        var sec1 = el.sys.sunrise;
+        var date1 = new Date(sec1 * 1000);
+        var timestr1 = date1.toLocaleTimeString();
+
+        // console.log(date, timestr); 
+
+           var sec2 = el.sys.sunset;
+        var date2 = new Date(sec2 * 1000);
+        var timestr2 = date2.toLocaleTimeString();
+
+        // console.log(date, timestr);
+
+
+        let sunrise = document.createElement("h5");
+        sunrise.textContent = "Sunrise: "+ timestr2 
+        
+
+         let sunset = document.createElement("h5");
+        sunset.textContent = "Sunset: " + timestr1
+
+        
+
+
+        Div.append(pName, Temp, wind,sunrise,sunset, cDiv);
+
+
+    }
+
+      
+
+
+
+    function search() {
+        let map = document.getElementById("map");
+        map.textContent = null;
+        var place = document.getElementById("city").value;
+
+        // console.log(place);
+
+
+
+        let frame = document.createElement("iframe");
+        frame.style.width = "600px";
+        frame.style.height = "450px";
+        frame.style.border = "0";
+        frame.style.loading = "lazy";
+        frame.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDS0uMVyG3mKUEro6d4Z_aplGifXboCJrQ&q=${place}`
+
+        map.append(frame);
+
+    }
+
+</script>

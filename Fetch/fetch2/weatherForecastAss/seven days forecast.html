@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 days forecast</title>
+    <style>
+        #cont{
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto;
+            /* border: 1px solid black; */
+            height: 300px;
+            width: 90%;
+            margin: 200px auto auto auto;
+        }
+        #cont>div{
+            /* border: 1px solid black; */
+        }
+        .days{
+            text-align: center;
+            font-size: 500;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #nm{
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="nm"></div>
+    <div id="cont"></div>
+</body>
+</html>
+<script>
+
+    let arr = JSON.parse(localStorage.getItem("cityName"));
+
+    // console.log(arr);
+
+    let name = arr[arr.length-1];
+
+    let nm = document.getElementById("nm");
+
+    nm.textContent = "Next 8 Days Forecast of "+ name;
+
+    async function showData(){
+            
+// console.log(name)
+        let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=43217800e9b2304cb46eb8ce5181fa4c`)
+
+        let data = await res.json();
+
+        // console.log(data);
+
+        grabData(data);
+    }
+
+   function grabData(place){
+// console.log(place);
+
+    let lat = place.coord.lat;
+    let lon = place.coord.lon;
+    // console.log(lat,lon)
+
+    sevenDays(lat,lon);
+   }
+
+   async function sevenDays(lat,lon){
+    //    console.log(lat,lon,name)
+
+    let res = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,hourly,minutely&appid=43217800e9b2304cb46eb8ce5181fa4c`);
+
+    let data = await res.json();
+    // console.log(data);
+       
+        appData(data);
+
+   }
+
+
+   function appData(data){
+    //    console.log(data);
+
+let daily = data.daily;
+
+   
+        daily.forEach((day) =>{
+            console.log(day);
+
+            let icon = day.weather[0].icon;
+            let minTemp = day.temp.min;
+            let maxTemp = day.temp.max;
+            let desc = day.weather[0].description;
+            // console.log(icon,minTemp,maxTemp)
+
+    let cont = document.getElementById("cont");
+    
+    
+        let Div = document.createElement("div");
+        
+
+            let iconImg = document.createElement("img");
+            iconImg.src = `http://openweathermap.org/img/w/${icon}.png`
+            iconImg.style.margin = "0 0 0 36%";
+            
+            
+            let maxTDiv = document.createElement("div");
+            maxTDiv.textContent = Math.round(maxTemp - 273) + "°C";
+            maxTDiv.style.fontSize = "20px";
+            maxTDiv.style.fontWeight = "600";
+            maxTDiv.style.textAlign = "center";
+
+            let minTDiv = document.createElement("div");
+            minTDiv.textContent = Math.round(minTemp - 273) + "°C";
+            minTDiv.style.textAlign = "center";
+
+            let descDiv = document.createElement("div");
+            descDiv.textContent = desc;
+            descDiv.style.textAlign = "center";
+
+
+        Div.append(iconImg,maxTDiv,minTDiv,descDiv);
+    
+    cont.append(Div);
+        })
+
+   }
+
+    showData();
+</script>

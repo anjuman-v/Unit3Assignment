@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+#data{
+
+    display:grid;
+    grid-template-columns: 25% 25% 25% 25%;
+
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right:5%;
+
+    grid-gap:20px;
+
+}
+
+img{
+
+    width:30%;
+    height:150px
+}
+
+</style>
+<body>
+    <h1>Online Store</h1>
+    <div id="data"></div>
+</body>
+</html>
+
+<script>
+
+let container = document.getElementById("data");
+
+let data = [];
+
+fetch("https://fakestoreapi.com/products")
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (res) {
+    data = res;
+      console.log("data:", data);
+      
+
+      appendProducts(data)
+  });
+
+function appendProducts(d) {
+  d.forEach(function (el) {
+    let div = document.createElement("div");
+
+    let img = document.createElement("img");
+
+    img.src = el.image;
+
+    let title = document.createElement("p");
+
+    title.innerText = el.title;
+
+    let price = document.createElement("p");
+
+    price.innerText = el.price;
+
+    let description = document.createElement("p");
+
+      description.innerText = el.description;
+      
+
+      div.append(img,title, price, description)
+
+      container.appendChild(div);
+      
+
+  });
+}
+
+</script>
