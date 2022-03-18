@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <h1>Vaccine boot alert system</h1>
+    <input type="text" id="input">
+    <button onclick="register()">register</button>
+</div>
+
+<script>
+    let queue=["Anjuman","zoya","Ruhi","duggu","bhaluiya","asdfghj"];
+    function register(){
+    var input=document.getElementById("input").value;
+    queue.push(input)
+    let message=`${input} your registration is successfull please wait for your turn`
+    alert(message)
+      let promise=new Promise(function(resolve,reject){
+        setInterval(function(){
+            if(queue[0]==input ||count==0){
+              resolve(`${input} is your turn now`)
+              clearInterval(interval)
+          }
+         
+        },1000) 
+      
+      })
+      promise.then(function(res){
+        alert(res)
+      })
+      .catch(function(err){
+          console.log("err:",err);
+      })
+    
+    var count=queue.length-1;
+    function startVac(){
+        queue.shift();
+        count--;
+        console.log(queue);
+        if(count==2){
+          alert("vaccine out of stock, visit tomorrow")
+          alert(`${count} people are still in the queue `)
+        }
+    }
+   let interval= setInterval(startVac, 2000);
+}
+  
+</script>
+</body>
+</html>
