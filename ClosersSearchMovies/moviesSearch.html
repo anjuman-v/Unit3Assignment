@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    input {
+      width: 200px;
+    }
+    #movies {
+      height: 200px;
+      width: 206px;
+      border: solid 1px black;
+      border-top: none;
+      overflow: scroll;
+    }
+    #cont{
+      height: auto;
+      width: 260px;
+      margin: auto;
+      margin-top: 3%;
+    }
+  </style>
+  <body>
+    <div id="cont">
+    <h1>Fetch</h1>
+     
+    <input oninput="throttleFunction(main)" type="text" id="query" />
+
+    <div id="movies"></div>
+  </div>
+  </body>
+</html>
+<script>
+  
+   var timerId;
+
+  let movies_div = document.getElementById("movies");
+
+  async function searchMovies(name) {
+    movies_div.innerHTML = null;
+
+    let response = await fetch(`https://www.omdbapi.com/?s=${name}&apikey=d806bd70`);
+
+    let data = await response.json();
+
+    return data.Search;
+  }
+
+  async function appendMovies(m) {
+    if (m === undefined) {
+      return false;
+    }
+
+    m.forEach(({ Title }) => {
+      let p = document.createElement("p");
+
+      p.innerText = Title;
+
+      movies_div.append(p);
+    });
+  }
+
+  function throttleFunction(func, delay) {
+    // If setTimeout is already scheduled, no need to do anything
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+
+    // Schedule a setTimeout after delay seconds
+    timerId = setTimeout(function () {
+      func();
+    }, delay);
+  }
+
+  async function main() {
+    let name = document.getElementById("query").value;
+
+    if (name.length <= 2) {
+      return false;
+    }
+
+    console.log("fired");
+
+    let m = await searchMovies(name);
+
+    appendMovies(m);
+  }
+
+</script>
